@@ -1,0 +1,19 @@
+modules:
+  .openai_api
+---
+question: |
+  List the foods you have.
+subquestion: |
+  I will create a delicious recipe using them. Bon appetit!
+fields:
+  - no label: foods
+    datatype: area
+---
+mandatory: True
+question: |
+  Your Recipe:
+subquestion: |
+  ${ resp["choices"][0]["message"]["content"] }
+---
+code: |
+  resp = send_to_openai(str(foods))
